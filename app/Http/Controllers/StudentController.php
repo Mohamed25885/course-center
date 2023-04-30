@@ -51,7 +51,7 @@ class StudentController extends Controller
         Student::create(
             $request->validated()
         );
-        return to_route('student.index');
+        return to_route('students.index');
     }
 
 
@@ -79,7 +79,7 @@ class StudentController extends Controller
         $student->update(
             $request->validated()
         );
-        return to_route('student.edit', $student);
+        return to_route('students.edit', $student);
     }
 
     /**
@@ -91,6 +91,6 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         $student->delete();
-        return to_route('student.index');
+        return to_route('students.index');
     }
 }

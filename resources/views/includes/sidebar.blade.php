@@ -12,8 +12,12 @@
             </li>
 
             <li>
-                <a href="{{route('student.index')}}" class="nav-link px-sm-0 px-2">
+                <a href="{{route('students.index')}}" class="nav-link px-sm-0 px-2">
                     <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline">Students</span></a>
+            </li>
+            <li>
+                <a href="{{route('courses.index')}}" class="nav-link px-sm-0 px-2">
+                    <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline">Courses</span></a>
             </li>
             {{-- <li class="dropdown">
                 <a href="#" class="nav-link dropdown-toggle px-sm-0 px-1" id="dropdown" data-bs-toggle="dropdown"

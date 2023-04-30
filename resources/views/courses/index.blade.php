@@ -36,7 +36,7 @@
                 <div class="col-12 col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{ route('students.create') }}" class="btn btn-primary">Create New Student</a>
+                            <a href="{{ route('courses.create') }}" class="btn btn-primary">Create New Course</a>
                         </div>
 
                         <div class="card-body">
@@ -44,26 +44,20 @@
                                 <table class="table table-striped font-14">
                                     <tr>
                                         <th>#</th>
-                                        <th class="text-left">Name</th>
-                                        <th class="text-left">Email</th>
-                                        <th class="text-left">Phone</th>
+                                        <th class="text-left">Title</th>
+
 
                                         <th width="120">Actions</th>
                                     </tr>
 
-                                    @foreach ($students as $student)
+                                    @foreach ($courses as $course)
                                         <tr>
-                                            <td>{{ $student->StudentId }}</td>
+                                            <td>{{ $course->CourseId }}</td>
 
                                             <td class="text-left">
-                                                {{ $student->full_name }}
+                                                {{ $course->CourseName }}
                                             </td>
-                                            <td class="text-left">
-                                                {{ $student->Email }}
-                                            </td>
-                                            <td class="text-left">
-                                                {{ $student->Phone }}
-                                            </td>
+
 
 
                                             <td>
@@ -74,13 +68,13 @@
                                                         <i class="fa fa-edit"></i>
                                                     </button>
                                                     <div class="dropdown-menu text-left webinars-lists-dropdown">
-                                                        <a href="{{ route('students.edit', $student) }}"
+                                                        <a href="{{ route('courses.edit', $course) }}"
                                                             class="d-flex align-items-center text-dark text-decoration-none btn-transparent btn-sm text-primary mt-1 ">
                                                             <i class="fa fa-history" aria-bs-hidden="true"></i>
                                                             <span>Edit</span>
                                                         </a>
 
-                                                        <form action="{{ route('students.destroy', $student) }}" method="post">
+                                                        <form action="{{ route('courses.destroy', $course) }}" method="post">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button
@@ -100,7 +94,7 @@
                         </div>
 
                         <div class="card-footer text-center">
-                            {{ $students->appends(request()->input())->links() }}
+                            {{ $courses->appends(request()->input())->links() }}
                         </div>
 
                     </div>

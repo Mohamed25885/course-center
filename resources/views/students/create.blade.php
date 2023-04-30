@@ -12,7 +12,7 @@
                     <h1>Create New Student</h1>
                 </div>
                 <div class="card-body">
-                    <form action="{{ empty($student) ? route('student.store') : route('student.update',$student) }}" method="POST" class="mb-0"
+                    <form action="{{ empty($student) ? route('students.store') : route('students.update',$student) }}" method="POST" class="mb-0"
                         id="createEditStudent">
                         @csrf
                         <input type="hidden" name="StudentId" value="{{@$student?->StudentId}}">
