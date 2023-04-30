@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateStudentRequest extends FormRequest
+class UpdateTeacherRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,15 +23,12 @@ class UpdateStudentRequest extends FormRequest
      */
     public function rules()
     {
-        $dt = new \Carbon\Carbon();
-        $before = $dt->subYears(6)->format('Y/m/d');
         return [
-            "StudentId" => ["required", "exists:students,StudentId"],
+            "TeacherId" => ["required", "exists:teachers,TeacherId"],
             "FirstName" => ["required", "string", "max:45"],
             "LastName" => ["required", "string", "max:45"],
             "Phone" => ["required", "numeric"],
-            "BirthDate" => ["required", "date", 'before_or_equal:' . $before],
-            "Email" => ["required", "email", "unique:students,Email," . $this->student->StudentId . ",StudentId"],
+            "Email" => ["required", "email", "unique:teachers,Email," . $this->teacher->TeacherId . ",TeacherId"],
         ];
     }
 }

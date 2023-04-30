@@ -12,6 +12,10 @@
             </li>
 
             <li>
+                <a href="{{route('teachers.index')}}" class="nav-link px-sm-0 px-2">
+                    <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline">Teachers</span></a>
+            </li>
+            <li>
                 <a href="{{route('students.index')}}" class="nav-link px-sm-0 px-2">
                     <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline">Students</span></a>
             </li>

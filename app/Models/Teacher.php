@@ -6,18 +6,15 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class Teacher extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['StudentId'];
-    protected $primaryKey = 'StudentId';
+    protected $guarded = ['TeacherId'];
+    protected $primaryKey = 'TeacherId';
 
     public $timestamps = false;
 
-    protected $casts = [
-        'BirthDate' => 'date'
-    ];
 
     public function fullName(): Attribute
     {

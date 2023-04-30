@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{CourseController, HomeController, StudentController};
+use App\Http\Controllers\{CourseController, HomeController, StudentController, TeacherController};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,5 +24,6 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+Route::resource('/teachers', TeacherController::class)->except(['show']);
 Route::resource('/courses', CourseController::class)->except(['show']);
 Route::resource('/students', StudentController::class)->except(['show']);

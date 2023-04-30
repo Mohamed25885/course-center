@@ -23,11 +23,13 @@ class StoreStudentRequest extends FormRequest
      */
     public function rules()
     {
+        $dt = new \Carbon\Carbon();
+        $before = $dt->subYears(6)->format('Y/m/d');
         return [
             "FirstName" => ["required", "string", "max:45"],
             "LastName" => ["required", "string", "max:45"],
             "Phone" => ["required", "numeric"],
-            "BirthDate" => ["required", "date",],
+            "BirthDate" => ["required", "date", 'before_or_equal:' . $before],
             "Email" => ["required", "email", "unique:students,Email"],
 
         ];

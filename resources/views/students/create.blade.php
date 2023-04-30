@@ -26,7 +26,7 @@
                                 Email</x-input-form>
                             <x-input-form type="tel" name="Phone" :value="@$student?->Phone">
                                 Phone</x-input-form>
-                            <x-input-form type="date" name="BirthDate" :value="@$student?->BirthDate">
+                            <x-input-form type="date" name="BirthDate" :value="@$student?->BirthDate?->format('Y-m-d')">
                                 Birth Date</x-input-form>
                         </div>
                     </form>

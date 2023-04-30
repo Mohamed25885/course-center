@@ -36,7 +36,7 @@
                 <div class="col-12 col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{ route('students.create') }}" class="btn btn-primary">Create New Student</a>
+                            <a href="{{ route('teachers.create') }}" class="btn btn-primary">Create New Teacher</a>
                         </div>
 
                         <div class="card-body">
@@ -47,26 +47,22 @@
                                         <th class="text-left">Name</th>
                                         <th class="text-left">Email</th>
                                         <th class="text-left">Phone</th>
-                                        <th class="text-left">Age</th>
 
                                         <th width="120">Actions</th>
                                     </tr>
 
-                                    @foreach ($students as $student)
+                                    @foreach ($teachers as $teacher)
                                         <tr>
-                                            <td>{{ $student->StudentId }}</td>
+                                            <td>{{ $teacher->TeacherId }}</td>
 
                                             <td class="text-left">
-                                                {{ $student->full_name }}
+                                                {{ $teacher->full_name }}
                                             </td>
                                             <td class="text-left">
-                                                {{ $student->Email }}
+                                                {{ $teacher->Email }}
                                             </td>
                                             <td class="text-left">
-                                                {{ $student->Phone }}
-                                            </td>
-                                            <td class="text-left">
-                                                {{ $student->BirthDate->age }}
+                                                {{ $teacher->Phone }}
                                             </td>
 
 
@@ -78,13 +74,13 @@
                                                         <i class="fa fa-edit"></i>
                                                     </button>
                                                     <div class="dropdown-menu text-left webinars-lists-dropdown">
-                                                        <a href="{{ route('students.edit', $student) }}"
+                                                        <a href="{{ route('teachers.edit', $teacher) }}"
                                                             class="d-flex align-items-center text-dark text-decoration-none btn-transparent btn-sm text-primary mt-1 ">
                                                             <i class="fa fa-history" aria-bs-hidden="true"></i>
                                                             <span>Edit</span>
                                                         </a>
 
-                                                        <form action="{{ route('students.destroy', $student) }}" method="post">
+                                                        <form action="{{ route('teachers.destroy', $teacher) }}" method="post">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button
@@ -104,7 +100,7 @@
                         </div>
 
                         <div class="card-footer text-center">
-                            {{ $students->appends(request()->input())->links() }}
+                            {{ $teachers->appends(request()->input())->links() }}
                         </div>
 
                     </div>
