@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use App\Models\Teacher;
 
 class CourseController extends Controller
 {
@@ -61,7 +62,11 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        return view('courses.create', ['course' => $course]);
+        $teachers = Teacher::select('FirstName', 'LastName', 'TeacherId')->get()->pluck('full_name', 'TeacherId');
+        $course = $course->load(['cycles' => function ($q) {
+            return $q->orderBy('StartDate')->orderBy('EndDate')->with('teacher:TeacherId,FirstName,LastName');
+        }]);
+        return view('courses.create', ['course' =>  $course, 'teachers' => $teachers]);
     }
 
     /**

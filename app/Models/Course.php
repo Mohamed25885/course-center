@@ -13,4 +13,9 @@ class Course extends Model
     protected $primaryKey = 'CourseId';
 
     public $timestamps = false;
+
+    public function cycles()
+    {
+        return $this->hasMany(CourseCycles::class, 'CoursesId', 'CourseId');
+    }
 }

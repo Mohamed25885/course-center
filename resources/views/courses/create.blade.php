@@ -27,6 +27,10 @@
                         </div>
                     </form>
                 </div>
+
+                @if (!empty($course))
+                    @include('courses.cycles.cycles')
+                @endif
             </section>
 
             <div class="row mt-4">

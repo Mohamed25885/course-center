@@ -2,13 +2,15 @@
 
 @section('content')
     <section class="section">
-
+        <div class="section-header">
+            <h1>{{ $cycle->course->CourseName }}</h1>
+            <h4>Cycle: {{ $cycle->StartDate->format('M d') }} - {{ $cycle->EndDate->format('M d') }}</h4>
+        </div>
 
 
         <div class="section-body">
 
-
-            <section class="card">
+            {{-- <section class="card">
                 <div class="card-body">
                     <form method="get" class="mb-0">
                         <div class="row align-items-baseline">
@@ -30,13 +32,16 @@
 
                     </form>
                 </div>
-            </section>
+            </section> --}}
+
 
             <div class="row mt-4">
                 <div class="col-12 col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{ route('courses.create') }}" class="btn btn-primary">Create New Course</a>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#createCycleEnrollment">
+                                Create New Enrollment</button>
                         </div>
 
                         <div class="card-body">
@@ -44,18 +49,26 @@
                                 <table class="table table-striped font-14">
                                     <tr>
                                         <th>#</th>
-                                        <th class="text-left">Title</th>
+                                        <th class="text-left">Student</th>
+                                        <th class="text-left">Enrollment Date</th>
+                                        <th class="text-left">Is cancelled?</th>
 
 
                                         <th width="120">Actions</th>
                                     </tr>
 
-                                    @foreach ($courses as $course)
+                                    @foreach ($enrollments as $enrollment)
                                         <tr>
-                                            <td>{{ $course->CourseId }}</td>
+                                            <td>{{ $enrollment->EnrollmentID }}</td>
 
                                             <td class="text-left">
-                                                {{ $course->CourseName }}
+                                                {{ $enrollment->student->full_name }}
+                                            </td>
+                                            <td class="text-left">
+                                                {{ $enrollment->EnrollDate->format('Y-m-d') }}
+                                            </td>
+                                            <td class="text-left">
+                                                {{ $enrollment->Cancelled ? 'Yes' : 'No' }}
                                             </td>
 
 
@@ -68,13 +81,16 @@
                                                         <i class="fa fa-edit"></i>
                                                     </button>
                                                     <div class="dropdown-menu text-left webinars-lists-dropdown">
-                                                        <a href="{{ route('courses.edit', $course) }}"
+
+                                                        <a href="javascript:void(0);" data-bs-toggle="modal"
+                                                            data-bs-target="#updateCycleEnrollment{{ $enrollment->id }}"
                                                             class="d-flex align-items-center text-dark text-decoration-none btn-transparent btn-sm text-primary mt-1 ">
                                                             <i class="fa fa-history" aria-bs-hidden="true"></i>
                                                             <span>Edit</span>
                                                         </a>
 
-                                                        <form action="{{ route('courses.destroy', $course) }}"
+                                                        <form
+                                                            action="{{ route('cycles.enrollments.destroy', $enrollment) }}"
                                                             method="post">
                                                             @csrf
                                                             @method('DELETE')
@@ -84,10 +100,17 @@
                                                                 <span>Delete</span>
                                                             </button>
                                                         </form>
+
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
+
+                                        @push('scripts_bottom')
+                                            @include('courses.enrollments.editEnrollment', [
+                                                'enrollment' => $enrollment,
+                                            ])
+                                        @endpush
                                     @endforeach
 
                                 </table>
@@ -95,7 +118,7 @@
                         </div>
 
                         <div class="card-footer text-center">
-                            {{ $courses->appends(request()->input())->links() }}
+                            {{ $enrollments->appends(request()->input())->links() }}
                         </div>
 
                     </div>
@@ -104,8 +127,6 @@
         </div>
     </section>
 @endsection
-
-
-
-
-
+@push('scripts_bottom')
+    @include('courses.enrollments.createEnrollment')
+@endpush
