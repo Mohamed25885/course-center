@@ -16,10 +16,10 @@
                     @endif
                 </div>
                 <div class="card-body">
-                    <form action="{{ empty($student) ? route('students.store') : route('students.update',$student) }}" method="POST" class="mb-0"
-                        id="createEditStudent">
+                    <form action="{{ empty($student) ? route('students.store') : route('students.update', $student) }}"
+                        method="POST" class="mb-0" id="createEditStudent">
                         @csrf
-                        <input type="hidden" name="StudentId" value="{{@$student?->StudentId}}">
+                        <input type="hidden" name="StudentId" value="{{ @$student?->StudentId }}">
                         @method(empty($student) ? 'POST' : 'PUT')
                         <div class="row">
                             <x-input-form type="text" name="FirstName" :value="@$student?->FirstName">
@@ -36,6 +36,8 @@
                     </form>
                 </div>
             </section>
+
+
 
             <div class="row mt-4">
                 <div class="col-12 col-md-12">

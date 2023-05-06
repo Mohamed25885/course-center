@@ -26,4 +26,14 @@ class Student extends Model
 
         );
     }
+
+    public function cycles()
+    {
+        return $this->hasManyThrough(CourseCycles::class, Enrollment::class, 'CycleId', 'CycleId')->where('Cancelled', false);
+    }
+
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class, 'EnrollmentID');
+    }
 }

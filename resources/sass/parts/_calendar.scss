@@ -27,11 +27,12 @@
             aspect-ratio: 1;
             border: 1px solid grey;
             overflow: hidden;
+
             .wrapper {
                 display: flex;
                 h6 {
                     color: black;
-                    width: 10%;
+                    width: fit-content;
                     margin-inline: 4%;
                     display: inline;
                 }
@@ -42,6 +43,14 @@
                     flex-grow: 1;
                     span {
                     }
+                }
+            }
+             &.today{
+                background: rgb(38, 38, 105);
+                color: white;
+                h6{
+                    color: white;
+                    font-weight: bold;
                 }
             }
         }

@@ -41,4 +41,8 @@ class CourseCycles extends Model
     {
         return $this->hasMany(CycleClass::class, 'CycleId');
     }
+    public function exams()
+    {
+        return $this->hasMany(Exam::class, 'CycleId');
+    }
 }

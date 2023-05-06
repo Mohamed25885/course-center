@@ -20,7 +20,7 @@ class CycleClassController extends Controller
 
         $data = [
             'cycle' => $courseCycles->load('course'),
-            'classes' => $courseCycles->classes()->orderBy('ClassDay', 'asc')->paginate(),
+            'classes' => $courseCycles->classes()->orderBy('ClassDay', 'desc')->paginate(),
             'days' => week_days(),
         ];
         return view('courses.classes.classes', $data);

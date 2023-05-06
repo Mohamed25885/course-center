@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{CourseController, CourseCyclesController, CycleClassController, EnrollmentController, ExamController, ExamResultController, HomeController, ProfileController, StudentController, StudentEnrollmentController, TeacherController};
+use App\Http\Controllers\{CourseController, CourseCyclesController, CycleClassController, EnrollmentController, ExamController, ExamResultController, HomeController, ProfileController, StudentCalendarController, StudentController, StudentEnrollmentController, TeacherController};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +31,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::resource('/exams', ExamController::class)->except(['show']);
     Route::resource('/results', ExamResultController::class)->except(['show']);
     Route::get('/student-enrollments/{student}', StudentEnrollmentController::class)->name('student-enrollments');
+    Route::get('/student-calendar/{student}', StudentCalendarController::class)->name('student-calendar');
     Route::prefix('/cycles')->as('cycles.')->controller(CourseCyclesController::class)->group(function () {
         Route::post('/{course}/store', 'store')->name('store');
         Route::delete('/{courseCycles}/destroy', 'destroy')->name('destroy');
