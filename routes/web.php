@@ -22,7 +22,7 @@ Route::get('/', function () {
 Auth::routes();
 
 
-Route::prefix('dashboard')->group(function () {
+Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
     Route::resource('/teachers', TeacherController::class)->except(['show']);
