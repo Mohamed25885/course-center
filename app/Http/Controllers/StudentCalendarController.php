@@ -20,10 +20,7 @@ class StudentCalendarController extends Controller
         $student->load(['cycles' => function ($q) {
             $q
                 ->with([
-                    'exams' => fn ($q) => $q->orderBy('TestDate')->where(function ($q) {
-                        $q->where('TestDate', '>=', Carbon::now()->subDays(15))
-                            ->orWhere('TestDate', '<=', Carbon::now()->addDays(15));
-                    }),
+                    'exams' => fn ($q) => $q->orderBy('TestDate'),
                     'classes' => fn ($q) => $q->orderBy('ClassDay'),
                 ]);
         }]);
