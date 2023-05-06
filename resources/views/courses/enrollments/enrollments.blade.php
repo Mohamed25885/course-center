@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="card-body">
-                            <div class="table-responsive">
+                            <div class="table-responsive table-hover">
                                 <table class="table table-striped font-14">
                                     <tr>
                                         <th>#</th>
@@ -75,16 +75,16 @@
 
                                             <td>
                                                 <div class="btn-group dropdown table-actions">
-                                                    <button type="button" class="btn-transparent dropdown-toggle"
+                                                    <button type="button" class="btn btn-outline-primary btn-transparent dropdown-toggle actionsbtn"
                                                         data-bs-toggle="dropdown" aria-bs-haspopup="true"
                                                         aria-bs-expanded="false">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
-                                                    <div class="dropdown-menu text-left webinars-lists-dropdown">
+                                                    <div class="nav-item dropdown dropdown-menu text-left webinars-lists-dropdown">
 
                                                         <a href="javascript:void(0);" data-bs-toggle="modal"
                                                             data-bs-target="#updateCycleEnrollment{{ $enrollment->id }}"
-                                                            class="d-flex align-items-center text-dark text-decoration-none btn-transparent btn-sm text-primary mt-1 ">
+                                                            class="dropdown-item d-flex align-items-center text-dark text-decoration-none btn-transparent btn-sm text-primary mt-1 ">
                                                             <i class="fa fa-history" aria-bs-hidden="true"></i>
                                                             <span>Edit</span>
                                                         </a>
@@ -95,7 +95,7 @@
                                                             @csrf
                                                             @method('DELETE')
                                                             <button
-                                                                class="d-flex align-items-center text-dark text-decoration-none btn-transparent btn-sm text-primary mt-1 ">
+                                                                class="d-flex align-items-center text-dark text-decoration-none btn-transparent btn-sm text-primary mt-1 btn btn-unstyled dropdown-item">
                                                                 <i class="fa fa-history" aria-bs-hidden="true"></i>
                                                                 <span>Delete</span>
                                                             </button>

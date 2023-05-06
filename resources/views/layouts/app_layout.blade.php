@@ -14,7 +14,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/all.min.css') }}">
-
+    <link rel="stylesheet" href="{{ '' }}css/dashboard.css" >
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
