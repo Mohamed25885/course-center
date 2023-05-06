@@ -31,7 +31,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::resource('/exams', ExamController::class)->except(['show']);
     Route::resource('/results', ExamResultController::class)->except(['show']);
     Route::get('/student-enrollments/{student}', StudentEnrollmentController::class)->name('student-enrollments');
-    Route::get('/student-calendar/{student}', [StudentCalendarController::class, 'calendar'])->name('student-calendar');
+    Route::get('/student-calendar/{student}', StudentCalendarController::class)->name('student-calendar');
     Route::prefix('/cycles')->as('cycles.')->controller(CourseCyclesController::class)->group(function () {
         Route::post('/{course}/store', 'store')->name('store');
         Route::delete('/{courseCycles}/destroy', 'destroy')->name('destroy');

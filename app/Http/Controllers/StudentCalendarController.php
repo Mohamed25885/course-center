@@ -15,9 +15,9 @@ class StudentCalendarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function calendar(Request $request, Student $student)
+    public function __invoke(Request $request, Student $student)
     {
-        $student->load(['cycles' => function ($q) {
+        $student->with(['cycles' => function ($q) {
             return $q->with([
                     'exams' => fn ($q) => $q->orderBy('TestDate'),
                     'classes' => fn ($q) => $q->orderBy('ClassDay'),
