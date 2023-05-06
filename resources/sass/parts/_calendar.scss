@@ -3,6 +3,7 @@
         margin: 0;
         padding: 10px 0;
         background-color: #ddd;
+        display: flex;
         li {
             display: inline-block;
             width: 14%;
@@ -18,7 +19,7 @@
         li {
             list-style-type: none;
             display: inline-block;
-            width: 14%;
+            width: 13.6%;
             text-align: center;
             margin-bottom: 5px;
             font-size: 12px;

@@ -12,7 +12,7 @@
                     {{ $student->full_name }} Calendar
                 </div>
                 <div class="card-body">
-                    @include('students.calendar')
+                    @include('students.includes.calendar')
                 </div>
             </section>
 
