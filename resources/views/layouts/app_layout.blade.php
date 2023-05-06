@@ -28,9 +28,9 @@
         <div class="container-fluid overflow-hidden">
             <div class="row vh-100 overflow-auto">
                 @include('includes.sidebar')
-
                 <div class="col d-flex flex-column h-sm-100">
                     <main class="row overflow-auto py-4">
+                        @include('includes.navbar')
                         @yield('content')
                     </main>
                     @include('includes.footer')
