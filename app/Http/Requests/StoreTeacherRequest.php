@@ -13,7 +13,8 @@ class StoreTeacherRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->check();    }
+        return auth()->check();
+    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -27,6 +28,7 @@ class StoreTeacherRequest extends FormRequest
             "LastName" => ["required", "string", "max:45"],
             "Phone" => ["required", "numeric"],
             "Email" => ["required", "email", "unique:teachers,Email"],
+            'Image' => ['nullable', 'image']
         ];
     }
 }

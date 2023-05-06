@@ -25,6 +25,8 @@ class StoreCourseRequest extends FormRequest
     {
         return [
             "CourseName" => ["required", "string", "max:45"],
+            'Image' => ['nullable', 'image'],
+            "Slug" => ["required", "string", "unique:courses,Slug"],
 
             "CourseDescription" => ["required", "string", "max:45"],
 

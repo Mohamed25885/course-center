@@ -50,8 +50,8 @@
                                     <tr>
                                         <th>#</th>
                                         <th class="text-left">Student</th>
-                                        <th class="text-left">Enrollment Date</th>
-                                        <th class="text-left">Is cancelled?</th>
+                                        <th class="text-center">Enrollment Date</th>
+                                        <th class="text-center">Is cancelled?</th>
 
 
                                         <th width="120">Actions</th>
@@ -62,13 +62,19 @@
                                             <td>{{ $enrollment->EnrollmentID }}</td>
 
                                             <td class="text-left">
-                                                {{ $enrollment->student->full_name }}
+                                                <a href="{{ route('students.edit', $enrollment->student) }}">
+                                                    {{ $enrollment->student->full_name }}
+                                                </a>
                                             </td>
-                                            <td class="text-left">
+                                            <td class="text-center">
                                                 {{ $enrollment->EnrollDate->format('Y-m-d') }}
                                             </td>
-                                            <td class="text-left">
-                                                {{ $enrollment->Cancelled ? 'Yes' : 'No' }}
+                                            <td class="text-center">
+                                                @if ($enrollment->Cancelled)
+                                                    <span class="text-danger">Yes</span>
+                                                @else
+                                                    <span class="text-success">No</span>
+                                                @endif
                                             </td>
 
 
@@ -83,7 +89,7 @@
                                                     <div class="dropdown-menu text-left webinars-lists-dropdown">
 
                                                         <a href="javascript:void(0);" data-bs-toggle="modal"
-                                                            data-bs-target="#updateCycleEnrollment{{ $enrollment->id }}"
+                                                            data-bs-target="#updateCycleEnrollment{{ $enrollment->EnrollmentID }}"
                                                             class="d-flex align-items-center text-dark text-decoration-none btn-transparent btn-sm text-primary mt-1 ">
                                                             <i class="fa fa-history" aria-bs-hidden="true"></i>
                                                             <span>Edit</span>

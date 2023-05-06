@@ -45,6 +45,9 @@
                                     <tr>
                                         <th>#</th>
                                         <th class="text-left">Title</th>
+                                        <th class="text-center">Cycles</th>
+                                        <th class="text-center">Total Enrollments</th>
+                                        <th class="text-center">Active Enrollments</th>
 
 
                                         <th width="120">Actions</th>
@@ -56,6 +59,15 @@
 
                                             <td class="text-left">
                                                 {{ $course->CourseName }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ $course->cycles_count }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ $course->total_enrollment }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ $course->active_enrollment }}
                                             </td>
 
 
@@ -104,8 +116,3 @@
         </div>
     </section>
 @endsection
-
-
-
-
-

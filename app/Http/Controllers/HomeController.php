@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
+use App\Traits\HomeReports;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    use HomeReports;
     /**
      * Create a new controller instance.
      *
@@ -23,6 +26,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard.home');
+
+        $data = ['reports' => [
+            $this->coursesReport(),
+            $this->enrollmentsReport(),
+            $this->examsReport(),
+            $this->studentsReport(),
+            $this->teachersReport()
+        ]];
+
+        return view('dashboard.home', $data);
     }
 }

@@ -48,9 +48,13 @@ class TeacherController extends Controller
      */
     public function store(StoreTeacherRequest $request)
     {
-        Teacher::create(
-            $request->validated()
+        $teacher = Teacher::create(
+            $request->except(['Image'])
         );
+        if ($request->hasFile('Image')) {
+            $teacher->image_file = $request->file('Image');
+            $teacher->save();
+        }
         return to_route('teachers.index');
     }
 
@@ -76,9 +80,13 @@ class TeacherController extends Controller
      */
     public function update(UpdateTeacherRequest $request, Teacher $teacher)
     {
-        $teacher->update(
-            $request->validated()
+        $teacher->fill(
+            $request->except(['Image'])
         );
+        if ($request->hasFile('Image')) {
+            $teacher->image_file = $request->file('Image');
+        }
+        $teacher->save();
         return to_route('teachers.edit', $teacher);
     }
 

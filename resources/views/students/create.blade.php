@@ -9,7 +9,11 @@
 
             <section class="card">
                 <div class="card-header">
-                    <h1>Create New Student</h1>
+                    @if (!empty($student))
+                        <h1>Edit {{ $student->FirstName }}</h1>
+                    @else
+                        <h1>Create New Student</h1>
+                    @endif
                 </div>
                 <div class="card-body">
                     <form action="{{ empty($student) ? route('students.store') : route('students.update',$student) }}" method="POST" class="mb-0"

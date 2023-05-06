@@ -21,6 +21,11 @@ class CourseController extends Controller
                 $search = strtolower(request('search'));
                 $q->where('CourseName', 'like', "%" . $search . "%");
             })
+            ->withCount([
+                'cycles',
+                'enrollments as total_enrollment',
+                'enrollments as active_enrollment' => fn ($q) => $q->where('Cancelled', false)
+            ])
             ->paginate();
         $data = [
             'courses' => $courses,
@@ -46,9 +51,13 @@ class CourseController extends Controller
      */
     public function store(StoreCourseRequest $request)
     {
-        Course::create(
-            $request->validated()
+        $course = Course::create(
+            $request->except(['Image'])
         );
+        if ($request->hasFile('Image')) {
+            $course->image_file = $request->file('Image');
+            $course->save();
+        }
         return to_route('courses.index');
     }
 
@@ -64,7 +73,12 @@ class CourseController extends Controller
     {
         $teachers = Teacher::select('FirstName', 'LastName', 'TeacherId')->get()->pluck('full_name', 'TeacherId');
         $course = $course->load(['cycles' => function ($q) {
-            return $q->orderBy('StartDate')->orderBy('EndDate')->with('teacher:TeacherId,FirstName,LastName');
+            return $q->orderBy('StartDate')->orderBy('EndDate')->with([
+                'teacher:TeacherId,FirstName,LastName',
+                'classes' => function ($q) {
+                    return $q->selectRaw('max(ClassDay) as end_day, min(ClassDay) as start_day, CycleId')->groupBy('CycleId')->limit(1);
+                }
+            ]);
         }]);
         return view('courses.create', ['course' =>  $course, 'teachers' => $teachers]);
     }
@@ -78,9 +92,15 @@ class CourseController extends Controller
      */
     public function update(UpdateCourseRequest $request, Course $course)
     {
-        $course->update(
-            $request->validated()
+
+        $course->fill(
+            $request->except(['Image'])
         );
+        if ($request->hasFile('Image')) {
+
+            $course->image_file = $request->file('Image');
+        }
+        $course->save();
         return to_route('courses.edit', $course);
     }
 

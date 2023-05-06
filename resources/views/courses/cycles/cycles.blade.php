@@ -33,8 +33,14 @@
                                                     <h5>To {{ $cycle->EndDate->format('Y M d') }}</h5>
                                                 </div>
                                                 <div class="col-12">
-                                                    By {{ $cycle->teacher->full_name }}
+                                                    By <a href="{{ route('teachers.edit', @$cycle->teacher ?? '-1') }}">
+                                                        {{ @$cycle->teacher?->full_name ?? 'N/a' }}</a>
                                                 </div>
+                                                @if (!empty(@$cycle->classes[0]))
+                                                    <div class="col-12">
+                                                        From {{week_days(@$cycle->classes[0]->start_day) ?? ''}} To {{week_days(@$cycle->classes[0]?->end_day) ?? ''}}
+                                                    </div>
+                                                @endif
                                                 <div class="col-12">
                                                     <p>
                                                         {{ $cycle->CycleDescription }}
@@ -44,7 +50,10 @@
 
                                         </div>
                                         <div class="col-12 d-flex justify-content-around">
-                                            <a href="{{route('cycles.enrollments.index', $cycle)}}" class="btn btn-primary">Students</a>
+                                            <a href="{{ route('cycles.enrollments.index', $cycle) }}"
+                                                class="btn btn-primary">Students</a>
+                                            <a href="{{ route('cycles.classes.index', $cycle) }}"
+                                                class="btn btn-warning">Classes</a>
                                             <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
                                                 data-bs-target="#updateCycle{{ $cycle->CycleId }}ModalForm">
                                                 Update</button>

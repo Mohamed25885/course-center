@@ -84,6 +84,18 @@
                                                             <span>Edit</span>
                                                         </a>
 
+                                                        <a href="{{ route('student-enrollments', ['student'=>$student]) }}"
+                                                            class="d-flex align-items-center text-dark text-decoration-none btn-transparent btn-sm text-primary mt-1 ">
+                                                            <i class="fa fa-history" aria-bs-hidden="true"></i>
+                                                            <span>Enrollments</span>
+                                                        </a>
+
+                                                        <a href="{{ route('results.index', ['StudentId'=>$student->StudentId]) }}"
+                                                            class="d-flex align-items-center text-dark text-decoration-none btn-transparent btn-sm text-primary mt-1 ">
+                                                            <i class="fa fa-history" aria-bs-hidden="true"></i>
+                                                            <span>Exams' Results</span>
+                                                        </a>
+
                                                         <form action="{{ route('students.destroy', $student) }}" method="post">
                                                             @csrf
                                                             @method('DELETE')

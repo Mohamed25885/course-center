@@ -27,6 +27,9 @@ class UpdateCourseRequest extends FormRequest
             "CourseId" => ["required", "exists:courses,CourseId"],
             "CourseName" => ["required", "string", "max:45"],
             "CourseDescription" => ["required", "string", "max:45"],
+            "Slug" => ["required", "string", "unique:courses,Slug," . $this->course->CourseId . ",CourseId"],
+
+            'Image' => ['nullable', 'image'],
 
         ];
     }

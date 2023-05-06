@@ -37,4 +37,8 @@ class CourseCycles extends Model
     {
         return $this->hasMany(Enrollment::class, 'CycleId');
     }
+    public function classes()
+    {
+        return $this->hasMany(CycleClass::class, 'CycleId');
+    }
 }

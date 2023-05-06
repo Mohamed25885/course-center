@@ -29,6 +29,7 @@ class UpdateTeacherRequest extends FormRequest
             "LastName" => ["required", "string", "max:45"],
             "Phone" => ["required", "numeric"],
             "Email" => ["required", "email", "unique:teachers,Email," . $this->teacher->TeacherId . ",TeacherId"],
+            'Image' => ['nullable', 'image'],
         ];
     }
 }

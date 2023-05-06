@@ -5,7 +5,7 @@
      <div class="radio-group">
          @foreach ($values as $key => $value)
              <div class="form-check  form-check-inline">
-                 <input class="form-check-input" {{ $checked === $key ? 'checked' : '' }} value="{{ $key }}"
+                 <input class="form-check-input" @checked($checked === $key) value="{{ $key }}"
                      type="radio" name="{{ $name }}" id="radio-{{ $name }}-{{ $key }}">
                  <label class="form-check-label font-16" for="radio-{{ $name }}-{{ $key }}">
                      {{ $value }}

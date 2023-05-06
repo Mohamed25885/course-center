@@ -1,4 +1,4 @@
-@props(['name', 'grid' => 'col-12 col-md-6', 'values',  'selected' => null])
+@props(['name', 'grid' => 'col-12 col-md-6', 'values',  'selected' => null, 'reset' => false])
 
 <div class="{{ $grid }}">
     <div class="input input-wrapper">
@@ -8,9 +8,9 @@
             </label>
         @endif
         <select name="{{ $name }}" id="{{ $name }}" class="my-select form-control input-item">
-            <option value="" disabled selected></option>
+            <option value="" {{$reset? '' :'disabled'}} selected></option>
             @foreach ($values as $key => $value)
-                <option value="{{ $key }}" {{$key == $selected ? 'selected' :''}}>{{ $value }}</option>
+                <option value="{{ $key }}" @selected($key == $selected)>{{ $value }}</option>
             @endforeach
         </select>
          @error($name)

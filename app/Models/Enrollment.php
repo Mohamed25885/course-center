@@ -25,4 +25,8 @@ class Enrollment extends Model
     {
         return $this->belongsTo(Student::class, 'StudentId');
     }
+    public function cycle()
+    {
+        return $this->belongsTo(CourseCycles::class, 'CycleId');
+    }
 }
