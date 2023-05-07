@@ -40,16 +40,19 @@
                 .items {
                     display: flex;
                     flex-wrap: wrap;
-
+                    flex-direction: column;
                     flex-grow: 1;
                     span {
+                        a{
+                            text-decoration: none;
+                        }
                     }
                 }
             }
-             &.today{
+            &.today {
                 background: rgb(38, 38, 105);
                 color: white;
-                h6{
+                h6 {
                     color: white;
                     font-weight: bold;
                 }

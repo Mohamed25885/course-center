@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Enrollment;
 use App\Models\Student;
 use Carbon\{Carbon, CarbonPeriod};
 
@@ -17,14 +18,15 @@ class StudentCalendarController extends Controller
      */
     public function __invoke(Request $request, Student $student)
     {
-        $student->with(['cycles' => function ($q) {
+        $enrollments = Enrollment::where("StudentId", $student->StudentId)
+        ->where('Cancelled', false)->with(['cycle' => function ($q) {
             return $q->with([
-                    'exams' => fn ($q) => $q->orderBy('TestDate'),
-                    'classes' => fn ($q) => $q->orderBy('ClassDay'),
-                ]);
-        }]);
-        $exams = $student->cycles?->map(fn ($i) => $i->exams)?->flatten() ?? [];
-        $classes = $student->cycles?->map(fn ($i) => $i->classes)?->flatten()  ?? [];
+                'exams' => fn ($q) => $q->orderBy('TestDate'),
+                'classes' => fn ($q) => $q->orderBy('ClassDay'),
+            ]);
+        }])->get();
+        $exams = $enrollments?->map(fn ($i) => $i->cycle->exams)?->flatten() ?? [];
+        $classes = $enrollments?->map(fn ($i) => $i->cycle->classes)?->flatten()  ?? [];
         $start = Carbon::now()->subDays(15);
         $end = Carbon::now()->addDays(15);
         $days = CarbonPeriod::create($start->copy()->format('Y-m-d'), $end->copy()->format('Y-m-d'));
